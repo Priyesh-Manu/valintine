@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nan unnea kathilikire</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  button {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #yesButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  #noButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+  }
+  #finalMessage {
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+  }
+  #gif1 {
+    display: block;
+    margin: 20px auto 10px; /* Added margin-top */
+    width: 200px; /* Adjust the width as needed */
+    height: auto;
+  }
+  #gif2 {
+    display: none;
+    margin: 20px auto 10px; /* Added margin-top */
+    width: 200px; /* Adjust the width as needed */
+    height: auto;
+  }
+  #videoContainer {
+    display: none;
+  }
+</style>
+</head>
+<body>
+  <img id="gif1" src="Gif/gif1.gif" alt="Will you be my Valentine?" />
+  <h1>Will you be my Valentine?</h1>
+  <button id="yesButton">Yes</button>
+  <button id="noButton">No</button>
+  <div id="finalMessage">I know you love me! <br><p style="font-size: large;">Eni njn ntha cheyya ariyo??</p></div>
+  <div id="videoContainer">
+    <video id="myVideo" width="520" height="540" controls>
+      <source src="Gif/video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <img id="gif2" src="Gif/gif2.gif" alt="I know you love me!" />
+
+  <script>
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const finalMessage = document.getElementById('finalMessage');
+    const gif1 = document.getElementById('gif1');
+    const gif2 = document.getElementById('gif2');
+    const videoContainer = document.getElementById('videoContainer');
+    const myVideo = document.getElementById('myVideo');
+    const otherElements = document.querySelectorAll('h1, #yesButton, #noButton, #finalMessage, #gif2');
+
+    const noMessages = ["Serious ayyto?😤", "Podi pottathi, please😫", "Appoch nn eyy allea ullo !!.", "Ego ahh?😤","pls mansil akk😭","yes parnjoo moleea?😤","Ohh ethrayum kalam ennea cheat cheyya enno?😤","Thalak onnu koduthalo?😤","Ante vitkk varanno😤","ഞാൻ കരയും ട്ടോ !!😢","You break My heart💔","Ank njn kanich thara?😤",]; 
+    let currentMessageIndex = 0;
+
+    noButton.addEventListener('click', () => {
+      noButton.innerText = noMessages[currentMessageIndex];
+      currentMessageIndex = (currentMessageIndex + 1) % noMessages.length; // Increment index and wrap around
+      yesButton.style.fontSize = parseInt(window.getComputedStyle(yesButton).fontSize) + 5 + 'px';
+    });
+
+    yesButton.addEventListener('click', () => {
+      for (let element of otherElements) {
+        element.style.display = 'none';
+      }
+      finalMessage.style.display = 'block';
+      gif1.style.display = 'none';
+      gif2.style.display = 'block';
+
+      // Create "Click Here" button
+      const playButton = document.createElement('button');
+      playButton.innerText = 'Click Karoo';
+      playButton.style.fontSize = '20px';
+      playButton.style.padding = '10px 20px';
+      playButton.style.borderRadius = '5px';
+      playButton.style.cursor = 'pointer';
+      playButton.addEventListener('click', () => {
+        videoContainer.style.display = 'block';
+        myVideo.play();
+      });
+      document.body.insertBefore(playButton, gif2);
+    });
+  </script>
+</body>
+</html>
